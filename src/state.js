@@ -1,0 +1,29 @@
+import { createStore } from 'redux';
+const SET_STATE = 'SET_STATE';
+
+const setState = function(state) {
+  return {
+    type: SET_STATE,
+    payload: state
+  };
+}
+
+const setStateReducer = function(state = null, action) {
+  switch (action.type) {
+    case SET_STATE:
+      return {
+        ...state,
+        ...action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(setStateReducer);
+console.log('STORE', store)
+
+export {
+  setState,
+  store
+};
