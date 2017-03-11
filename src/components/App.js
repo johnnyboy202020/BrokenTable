@@ -6,17 +6,17 @@ import {
   Text
 } from 'react-native';
 import { store } from 'src/state';
-import Home from 'src/containers/Home';
+import List from 'src/containers/List';
 import Map from 'src/containers/Map';
 
 const ROUTES = {
-  Home,
+  List,
   Map
 };
 
 const initialRouteStack = [
-  { title: 'Home' },
   { title: 'Map' },
+  { title: 'List' },
 ];
 
 export default class App extends React.Component {
@@ -25,13 +25,29 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Navigator
           initialRouteStack={initialRouteStack}
-          initialRoute={initialRouteStack[1]}
+          initialRoute={initialRouteStack[0]}
           renderScene={(route, navigator) => {
             let Component = ROUTES[route.title];
             return <Component navigator={navigator} />
           }}
+          configureScene={this.configureScene}
         />
       </Provider>
     );
+  }
+
+  configureScene = route => {
+    console.log('ROUTE', route)
+
+    switch (route.title) {
+      case 'Map':
+      case 'List':
+        return {
+          ...Navigator.SceneConfigs.VerticalUpSwipeJump,
+          gestures: null
+        }
+      default:
+        return Navigator.SceneConfigs.PushFromRight
+    }
   }
 }

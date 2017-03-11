@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { setState } from 'src/state';
 
-class CreateEventModal extends React.Component {
+class List extends React.Component {
   render() {
     console.log('props', this.props.state)
     return (
@@ -28,4 +28,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEventModal);
+export default connect(mapStateToProps, mapDispatchToProps)(List);
