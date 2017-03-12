@@ -3,10 +3,11 @@ const SET_STATE = 'SET_STATE';
 
 const defaultState = {
   restaurants: [],
-
+  userLocation: null
 };
 
 const setState = function(state) {
+  console.log('STATE', state)
   return {
     type: SET_STATE,
     payload: state

@@ -9,6 +9,7 @@ import {
   Image
 } from 'react-native';
 import { setState } from 'src/state';
+import { getUserLocation } from 'src/helper';
 
 class Map extends React.Component {
   render() {
@@ -30,6 +31,17 @@ class Map extends React.Component {
         </View>
       </View>
     );
+  }
+
+  componentDidMount() {
+    fetch('https://brokentableapi.herokuapp.com/restaurants')
+      .then(res => res.json())
+      .then(restaurants => {
+        this.props.setState({ restaurants })
+      })
+      .catch(e => console.log('error', e));
+
+    getUserLocation(userLocation => this.props.setState({ userLocation }));
   }
 }
 
