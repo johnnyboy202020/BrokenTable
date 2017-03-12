@@ -12,11 +12,12 @@ module.exports.endpoint = (event, context, callback) => {
 };
 
 var restaurants = require('./data/sf_restaurants.json');
+var limit = 200;
 
 module.exports.restaurants = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: JSON.stringify(restaurants)
+    body: JSON.stringify(restaurants.slice(0, limit))
   }
   callback(null, response);
 }
@@ -27,7 +28,7 @@ var crimes = require('./data/crimes.json');
 module.exports.crimes = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: JSON.stringify(crimes)
+    body: JSON.stringify(crimes.slice(0, limit))
   }
   callback(null, response);
 }
@@ -37,7 +38,7 @@ var crime_restaurants = require('./data/crime_restaurants.json');
 module.exports.unsorted_crime_restaurants = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: JSON.stringify(crime_restaurants)
+    body: JSON.stringify(crime_restaurants.slice(0, limit))
   };
   callback(null, response);
 }
@@ -47,7 +48,7 @@ var sorted_crime_restaurants = require('./data/sorted_crime_restaurants.json');
 module.exports.sorted_crime_restaurants = (event, context, callback) => {
   const response = {
     statusCode: 200,
-    body: JSON.stringify(sorted_crime_restaurants)
+    body: JSON.stringify(sorted_crime_restaurants.slice(0, limit))
   }
   callback(null, response);
 }

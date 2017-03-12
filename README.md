@@ -18,13 +18,14 @@ A React Native Application that uses Maps, a dynamic ListView, and a bunch of ot
 
 ### San Francisco Restaurant Data grabbed from [OpenTable](http://www.opentable.com/) :)
 
-### San Francisco Crime Data grabbed from [SFOpenData]
+### San Francisco Crime Data grabbed from [https://data.sfgov.org/]
 
 [I'm an inline-style link](https://www.google.com)
 
+## Hosted on Serverless
 We built our own custom api for crimes and restaurants. The endpoints are hosted on **ServerLess.**
 
-[Serverless.yml](https://github.com/MiLeung/BrokenTable/blob/master/api/my-service/serverless.yml)
+**[Serverless.yml](https://github.com/MiLeung/BrokenTable/blob/master/api/my-service/serverless.yml)**
 
 #### list of restaurants
 GET - https://sjdlzi8nw0.execute-api.us-east-1.amazonaws.com/dev/restaurants
