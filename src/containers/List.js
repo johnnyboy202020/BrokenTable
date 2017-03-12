@@ -39,16 +39,11 @@ class List extends React.Component {
           onScroll={Keyboard.dismiss}
           scrollEventThrottle={500}
           style={{ flex: 1 }}
-          dataSource={ds.cloneWithRows(crime_restaurants.filter(data => {
-            console.log('DATA', data.name.toLowerCase().indexOf(this.state.input))
-            if (data.name.toLowerCase().indexOf(this.state.input) != -1) {
-              return true;
-            }
-            return false;
-          }))}
+          dataSource={ds.cloneWithRows(crime_restaurants.filter(data => data.name.toLowerCase().indexOf(this.state.input) != -1))}
           renderRow={this.renderRow}
           renderSeparator={this.renderSeparator}
           enableEmptySections={true}
+          removeClippedSubviews={false}
         />
         <TouchableOpacity onPress={this.props.navigator.pop}>
           <View style={{ marginRight: 10, alignSelf: 'flex-end', marginTop: -60, backgroundColor: colors.e, justifyContent: 'center', alignItems: 'center', height: 50, width: 50, borderWidth: 3, borderColor: colors.w, borderRadius: 25 }}>
@@ -80,17 +75,17 @@ class List extends React.Component {
           style={{ backgroundColor: colors.t, padding: 20, flexDirection: 'row' }}
           >
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 24, fontWeight: '500' }}>{name}</Text>
+            <Text style={{ fontSize: 23, fontWeight: '500' }}>{name}</Text>
             <Text>{`${this.getDistance(latitude, longitude, lat, lng).toFixed(2)} miles away, ${'$'.repeat(price)}`}</Text>
             {/* <Text>{"reserve"}</Text> */}
             <Image
-              style={{ height: 70, width: 70, tintColor: colors.q }}
+              style={{ height: 50, width: 50, tintColor: colors.q }}
               source={table[ranking]}
             />
           </View>
           <View>
             <Image
-              style={{ height: 140, width: 140, borderRadius: 70, borderWidth: 4, borderColor: colors.e, justifyContent: 'center', alignItems: 'center' }}
+              style={{ height: 100, width: 100, borderRadius: 50, borderWidth: 4, borderColor: colors.e, justifyContent: 'center', alignItems: 'center' }}
               source={{ uri: image_url }}
             />
           </View>
