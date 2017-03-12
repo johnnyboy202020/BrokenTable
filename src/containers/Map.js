@@ -72,7 +72,7 @@ class Map extends React.Component {
     fetch('https://brokentableapi.herokuapp.com/crime_restaurants')
       .then(res => res.json())
       .then(crime_restaurants => {
-        this.props.setState({ crime_restaurants })
+        this.props.setState({ crime_restaurants, selectedAnnotations: 'crime_restaurants' })
       })
       .catch(e => console.log('error', e));
     fetch('https://brokentableapi.herokuapp.com/restaurants')
@@ -112,9 +112,10 @@ class Map extends React.Component {
         image = require('src/assets/glove.png');
     }
 
-    let annotations = this.props.state[type].map(data => {
+    let annotations = this.props.state[type].slice(0, 100).map(data => {
       return {
         // image,
+        view: (<Text style={{ fontSize: 99 }}>hello</Text>),
         latitude: data.lat,
         longitude: data.lng
       };
