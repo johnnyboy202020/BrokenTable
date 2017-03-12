@@ -18,6 +18,10 @@ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 import { colors, table } from 'src/helper';
 
 class List extends React.Component {
+  state = {
+    input: ''
+  }
+
   render() {
     let { crime_restaurants } = this.props.state
     return (
@@ -28,13 +32,20 @@ class List extends React.Component {
             placeholderTextColor={colors.r}
             style={{ color: colors.t, backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
             placeholder="Search"
+            onChangeText={input => this.setState({ input: input.trim().toLowerCase() })}
           />
         </View>
         <ListView
           onScroll={Keyboard.dismiss}
           scrollEventThrottle={500}
           style={{ flex: 1 }}
-          dataSource={ds.cloneWithRows(crime_restaurants)}
+          dataSource={ds.cloneWithRows(crime_restaurants.filter(data => {
+            console.log('DATA', data.name.toLowerCase().indexOf(this.state.input))
+            if (data.name.toLowerCase().indexOf(this.state.input) != -1) {
+              return true;
+            }
+            return false;
+          }))}
           renderRow={this.renderRow}
           renderSeparator={this.renderSeparator}
           enableEmptySections={true}
