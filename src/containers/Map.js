@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  MapView,
   TouchableOpacity,
   Image
 } from 'react-native';
+import MapView from 'react-native-maps';
 import { setState } from 'src/state';
 import { getUserLocation } from 'src/helper';
 import { colors } from 'src/helper';
@@ -114,8 +114,6 @@ class Map extends React.Component {
 
     let annotations = this.props.state[type].slice(0, 100).map(data => {
       return {
-        // image,
-        view: (<Text style={{ fontSize: 99 }}>hello</Text>),
         latitude: data.lat,
         longitude: data.lng
       };
