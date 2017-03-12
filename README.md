@@ -1,13 +1,11 @@
 ## Summary
-Tourists often look for the best places to go. For that, use OpenTable.
+Tourists often look for the best places to go. For that, use OpenTable. But what if you want to know the worst places to go? Or places that you should avoid?
 
-But what if you want to know the worst places to go? Or places that you should avoid?
-
-Welcome to BrokenTable. Your source for the most broken restaurants in San Francisco.
+**Welcome to BrokenTable**. Your source for the most broken restaurants in San Francisco.
 
 Also, pay-per-view fights are too expensive. What if you want to actually *see a broken table?*
 
-Well, your best chance is a bar fight. So BrokenTable also combines crime data with restaurant data to give you the most dangerous and bar-fight ready restaurants around.
+Well, your best chance is a **bar fight**. So BrokenTable also combines crime data with restaurant data to give you the most dangerous and bar-fight ready restaurants around.
 
 
 
