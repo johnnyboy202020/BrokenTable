@@ -13,16 +13,31 @@ import {
 import { setState } from 'src/state';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+const table = {
+  '1': require('src/assets/tables/1.png'),
+  '2': require('src/assets/tables/2.png'),
+  '3': require('src/assets/tables/3.png'),
+  '4': require('src/assets/tables/4.png'),
+  '5': require('src/assets/tables/5.png')
+};
+
+const colors = {
+  q: '#000505',
+  w: '#3B3355',
+  e: '#5D5D81',
+  r: '#BFCDE0',
+  t: '#FEFCFD',
+};
 
 class List extends React.Component {
   render() {
     let { restaurants } = this.props.state
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ height: 15, backgroundColor: '#A8DCD1' }} />
-        <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: '#A8DCD1' }}>
+      <View style={{ flex: 1, backgroundColor: colors.t }}>
+        <View style={{ height: 15, backgroundColor: colors.t }} />
+        <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.t }}>
           <TextInput
-            style={{ backgroundColor: '#65DEF1', height: 40, margin: 10, padding: 10, borderRadius: 3 }}
+            style={{ backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
             placeholder="Search"
           />
         </View>
@@ -30,12 +45,13 @@ class List extends React.Component {
           style={{ flex: 1 }}
           dataSource={ds.cloneWithRows(restaurants)}
           renderRow={this.renderRow}
+          renderSeparator={this.renderSeparator}
           enableEmptySections={true}
         />
         <TouchableOpacity onPress={this.props.navigator.pop}>
-          <View style={{ marginRight: 10, alignSelf: 'flex-end', marginTop: -60, backgroundColor: '#F17F29', justifyContent: 'center', alignItems: 'center', height: 50, width: 50, borderWidth: 3, borderColor: '#F96900', borderRadius: 25 }}>
+          <View style={{ marginRight: 10, alignSelf: 'flex-end', marginTop: -60, backgroundColor: colors.e, justifyContent: 'center', alignItems: 'center', height: 50, width: 50, borderWidth: 3, borderColor: colors.w, borderRadius: 25 }}>
             <Image
-              style={{ height: 30, width: 30, tintColor: '#DCE2C8' }}
+              style={{ height: 30, width: 30, tintColor: colors.t }}
               source={require('src/assets/map.png')}
             />
           </View>
@@ -45,23 +61,46 @@ class List extends React.Component {
   }
 
   renderRow = restaurant => {
-    let { name, latitude, longitude } = restaurant;
+    let { name, lat, lng, ranking, image_url, price } = restaurant;
+    console.log('LATITUDE, LONGITUDE', latitude, longitude)
     let { userLocation } = this.props.state;
+    let { latitude, longitude } = userLocation;
 
     return (
       <TouchableOpacity>
         <View
-          style={{ height: 120, backgroundColor: '#DCE2C8', borderBottomWidth: 0.5, borderTopWidth: 0.5 }}
+          style={{ backgroundColor: colors.t, padding: 20, flexDirection: 'row' }}
           >
-          <Text style={{ fontSize: 24, fontWeight: '500' }}>{name}</Text>
-          <Text>{this.getDistance(userLocation.latitude, userLocation.longitude, latitude, longitude).toFixed(2)}</Text>
-          <Text>{"reserve"}</Text>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 24, fontWeight: '500' }}>{name}</Text>
+            <Text>{`${this.getDistance(latitude, longitude, lat, lng).toFixed(2)} miles away, ${'$'.repeat(price)}`}</Text>
+            {/* <Text>{"reserve"}</Text> */}
+            <Image
+              style={{ height: 100, width: 100, tintColor: colors.q }}
+              source={table[ranking]}
+            />
+          </View>
+          <View>
+            <Image
+              style={{ height: 140, width: 140, borderRadius: 70, borderWidth: 4, borderColor: colors.e, justifyContent: 'center', alignItems: 'center' }}
+              source={{ uri: image_url }}
+            />
+          </View>
         </View>
       </TouchableOpacity>
     );
   }
 
+  renderSeparator = () => {
+    return (
+      <View
+        style={{ backgroundColor: colors.r, height: 1, marginLeft: 40, marginRight: 40 }}
+      />
+    );
+  }
+
   getDistance = (lat1, lon1, lat2, lon2) => {
+    console.log('LAT1, LON1, LAT2, LON2', lat1, lon1, lat2, lon2)
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
     var dLon = this.deg2rad(lon2-lon1);
