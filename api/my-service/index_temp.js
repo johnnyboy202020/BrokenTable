@@ -42,12 +42,12 @@ module.exports.unsorted_crime_restaurants = (event, context, callback) => {
   callback(null, response);
 }
 
+var sorted_crime_restaurants = require('./data/sorted_crime_restaurants.json');
 // sorted crime restaurants
 module.exports.sorted_crime_restaurants = (event, context, callback) => {
-  crime_restaurants.sort((a, b) => b.crimes_nearby - a.crimes_nearby);
   const response = {
     statusCode: 200,
-    body: JSON.stringify(crime_restaurants)
+    body: JSON.stringify(sorted_crime_restaurants)
   }
   callback(null, response);
 }
