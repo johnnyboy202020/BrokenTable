@@ -16,7 +16,16 @@ const colors = {
   t: '#FEFCFD',
 };
 
+const table = {
+  '1': require('src/assets/tables/1.png'),
+  '2': require('src/assets/tables/2.png'),
+  '3': require('src/assets/tables/3.png'),
+  '4': require('src/assets/tables/4.png'),
+  '5': require('src/assets/tables/5.png')
+};
+
 export {
   getUserLocation,
-  colors
+  colors,
+  table
 };

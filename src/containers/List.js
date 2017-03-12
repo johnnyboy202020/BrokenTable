@@ -14,17 +14,14 @@ import {
 import { setState } from 'src/state';
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-const table = {
-  '1': require('src/assets/tables/1.png'),
-  '2': require('src/assets/tables/2.png'),
-  '3': require('src/assets/tables/3.png'),
-  '4': require('src/assets/tables/4.png'),
-  '5': require('src/assets/tables/5.png')
-};
 
-import { colors } from 'src/helper';
+import { colors, table } from 'src/helper';
 
 class List extends React.Component {
+  state = {
+    input: ''
+  }
+
   render() {
     let { crime_restaurants } = this.props.state
     return (
@@ -35,13 +32,20 @@ class List extends React.Component {
             placeholderTextColor={colors.r}
             style={{ color: colors.t, backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
             placeholder="Search"
+            onChangeText={input => this.setState({ input: input.trim().toLowerCase() })}
           />
         </View>
         <ListView
           onScroll={Keyboard.dismiss}
           scrollEventThrottle={500}
           style={{ flex: 1 }}
-          dataSource={ds.cloneWithRows(crime_restaurants)}
+          dataSource={ds.cloneWithRows(crime_restaurants.filter(data => {
+            console.log('DATA', data.name.toLowerCase().indexOf(this.state.input))
+            if (data.name.toLowerCase().indexOf(this.state.input) != -1) {
+              return true;
+            }
+            return false;
+          }))}
           renderRow={this.renderRow}
           renderSeparator={this.renderSeparator}
           enableEmptySections={true}
@@ -60,7 +64,7 @@ class List extends React.Component {
 
   renderRow = restaurant => {
     let { name, lat, lng, ranking, image_url, price } = restaurant;
-    console.log('LATITUDE, LONGITUDE', latitude, longitude)
+    // console.log('LATITUDE, LONGITUDE', latitude, longitude)
     let { userLocation } = this.props.state;
     let { latitude, longitude } = userLocation;
 
@@ -68,6 +72,7 @@ class List extends React.Component {
       <TouchableOpacity
         onPress={() => {
           this.props.setState({ selectedRestaurant: restaurant });
+          setTimeout(() => this.props.setState({ popped: true }), 200);
           this.props.navigator.pop();
         }}
         >
@@ -94,16 +99,17 @@ class List extends React.Component {
     );
   }
 
-  renderSeparator = () => {
+  renderSeparator = (s, r) => {
     return (
       <View
+        key={r}
         style={{ backgroundColor: colors.r, height: 1, marginLeft: 40, marginRight: 40 }}
       />
     );
   }
 
   getDistance = (lat1, lon1, lat2, lon2) => {
-    console.log('LAT1, LON1, LAT2, LON2', lat1, lon1, lat2, lon2)
+    // console.log('LAT1, LON1, LAT2, LON2', lat1, lon1, lat2, lon2)
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
     var dLon = this.deg2rad(lon2-lon1);
@@ -115,7 +121,7 @@ class List extends React.Component {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c; // Distance in km
     d = d*0.6;
-    console.log('d', d);
+    // console.log('d', d);
     return d;
   }
 

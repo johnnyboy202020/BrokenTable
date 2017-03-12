@@ -22,7 +22,7 @@ export default class App extends React.Component {
           initialRoute={{ title: 'Map' }}
           renderScene={(route, navigator) => {
             let Component = ROUTES[route.title];
-            return <Component navigator={navigator} />
+            return (<Component navigator={navigator} />);
           }}
           configureScene={this.configureScene}
         />
@@ -31,7 +31,7 @@ export default class App extends React.Component {
   }
 
   configureScene = route => {
-    console.log('ROUTE', route)
+    // console.log('ROUTE', route.map)
 
     switch (route.title) {
       case 'Map':
