@@ -1,0 +1,45 @@
+
+service: my-service
+
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+
+functions:
+  endpoint:
+    handler: index_temp.endpoint
+    events:
+      - http:
+          path: endpoint
+          method: get
+          cors: true
+  restaurants:
+    handler: index_temp.restaurants
+    events:
+      - http:
+          path: restaurants
+          method: get
+          cors: true
+  crimes:
+    handler: index_temp.crimes
+    events:
+      - http:
+          path: crimes
+          method: get
+          cors: true
+  unsorted_crime_restaurants:
+    handler: index_temp.unsorted_crime_restaurants
+    events:
+      - http:
+          path: unsorted_crime_restaurants
+          method: get
+          cors: true
+  sorted_crime_restaurants:
+    handler: index_temp.sorted_crime_restaurants
+    events:
+      - http:
+          path: sorted_crime_restaurants
+          method: get
+          cors: true
