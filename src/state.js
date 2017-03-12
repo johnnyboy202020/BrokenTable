@@ -3,7 +3,8 @@ const SET_STATE = 'SET_STATE';
 
 const defaultState = {
   restaurants: [],
-  userLocation: null
+  userLocation: null,
+  selectedRestaurant: null
 };
 
 const setState = function(state) {

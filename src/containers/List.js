@@ -65,7 +65,12 @@ class List extends React.Component {
     let { latitude, longitude } = userLocation;
 
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          this.props.setState({ selectedRestaurant: restaurant });
+          this.props.navigator.pop();
+        }}
+        >
         <View
           style={{ backgroundColor: colors.t, padding: 20, flexDirection: 'row' }}
           >
