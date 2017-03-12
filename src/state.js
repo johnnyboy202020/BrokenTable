@@ -27,7 +27,6 @@ const setStateReducer = function(state = defaultState, action) {
 }
 
 const store = createStore(setStateReducer);
-console.log('STORE', store)
 
 export {
   setState,

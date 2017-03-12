@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { setState } from 'src/state';
 import { getUserLocation } from 'src/helper';
+import { colors } from 'src/helper';
 
 class Map extends React.Component {
   render() {
@@ -21,9 +22,9 @@ class Map extends React.Component {
         />
         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
           <TouchableOpacity onPress={() => this.props.navigator.push({ title: 'List' })}>
-            <View style={{ backgroundColor: '#F17F29', justifyContent: 'center', alignItems: 'center', height: 50, width: 50, margin: 10, borderWidth: 3, borderColor: '#F96900', borderRadius: 25 }}>
+            <View style={{ marginRight: 10, alignSelf: 'flex-end', marginTop: -60, backgroundColor: colors.e, justifyContent: 'center', alignItems: 'center', height: 50, width: 50, borderWidth: 3, borderColor: colors.w, borderRadius: 25 }}>
               <Image
-                style={{ height: 28, width: 28, tintColor: '#DCE2C8' }}
+                style={{ height: 27, width: 27, tintColor: colors.t }}
                 source={require('src/assets/list.png')}
               />
             </View>

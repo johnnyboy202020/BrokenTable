@@ -8,6 +8,15 @@ function getUserLocation(callback) {
   );
 }
 
+const colors = {
+  q: '#000505',
+  w: '#3B3355',
+  e: '#5D5D81',
+  r: '#BFCDE0',
+  t: '#FEFCFD',
+};
+
 export {
-  getUserLocation
+  getUserLocation,
+  colors
 };

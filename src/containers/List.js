@@ -8,7 +8,8 @@ import {
   TextInput,
   StatusBar,
   TouchableOpacity,
-  Image
+  Image,
+  Keyboard
 } from 'react-native';
 import { setState } from 'src/state';
 
@@ -21,21 +22,15 @@ const table = {
   '5': require('src/assets/tables/5.png')
 };
 
-const colors = {
-  q: '#000505',
-  w: '#3B3355',
-  e: '#5D5D81',
-  r: '#BFCDE0',
-  t: '#FEFCFD',
-};
+import { colors } from 'src/helper';
 
 class List extends React.Component {
   render() {
     let { restaurants } = this.props.state
     return (
       <View style={{ flex: 1, backgroundColor: colors.t }}>
-        <View style={{ height: 15, backgroundColor: colors.t }} />
-        <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.t }}>
+        <View style={{ height: 15, backgroundColor: colors.r }} />
+        <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.r }}>
           <TextInput
             placeholderTextColor={colors.r}
             style={{ color: colors.t, backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
@@ -43,6 +38,8 @@ class List extends React.Component {
           />
         </View>
         <ListView
+          onScroll={Keyboard.dismiss}
+          scrollEventThrottle={500}
           style={{ flex: 1 }}
           dataSource={ds.cloneWithRows(restaurants)}
           renderRow={this.renderRow}
