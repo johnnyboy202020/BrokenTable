@@ -66,7 +66,7 @@ class List extends React.Component {
     return (
       <TouchableOpacity
         onPress={() => {
-          this.props.setState({ selectedRestaurant: restaurant });
+          this.props.setState({ selectedRestaurant: restaurant, selectedAnnotations: 'crime_restaurants' });
           setTimeout(() => this.props.setState({ popped: true }), 200);
           this.props.navigator.pop();
         }}
