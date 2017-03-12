@@ -6,7 +6,9 @@ const defaultState = {
   crimes: [],
   crime_restaurants: [],
   userLocation: null,
-  selectedRestaurant: null
+  selectedRestaurant: {},
+  modalVisible: false,
+  popped: false
 };
 
 const setState = function(state) {
