@@ -1,6 +1,11 @@
 import { createStore } from 'redux';
 const SET_STATE = 'SET_STATE';
 
+const defaultState = {
+  restaurants: [],
+
+};
+
 const setState = function(state) {
   return {
     type: SET_STATE,
@@ -8,7 +13,7 @@ const setState = function(state) {
   };
 }
 
-const setStateReducer = function(state = null, action) {
+const setStateReducer = function(state = defaultState, action) {
   switch (action.type) {
     case SET_STATE:
       return {

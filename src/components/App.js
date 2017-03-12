@@ -14,18 +14,12 @@ const ROUTES = {
   Map
 };
 
-const initialRouteStack = [
-  { title: 'Map' },
-  { title: 'List' },
-];
-
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <Navigator
-          initialRouteStack={initialRouteStack}
-          initialRoute={initialRouteStack[0]}
+          initialRoute={{ title: 'Map' }}
           renderScene={(route, navigator) => {
             let Component = ROUTES[route.title];
             return <Component navigator={navigator} />
