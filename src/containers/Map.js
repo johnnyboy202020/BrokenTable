@@ -34,7 +34,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://brokentableapi.herokuapp.com/restaurants')
+    fetch('https://brokentableapi.herokuapp.com/crime_restaurants')
       .then(res => res.json())
       .then(restaurants => {
         this.props.setState({ restaurants })

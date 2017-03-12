@@ -37,7 +37,8 @@ class List extends React.Component {
         <View style={{ height: 15, backgroundColor: colors.t }} />
         <View style={{ height: 60, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.t }}>
           <TextInput
-            style={{ backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
+            placeholderTextColor={colors.r}
+            style={{ color: colors.t, backgroundColor: colors.w, height: 40, margin: 10, padding: 10, borderRadius: 3 }}
             placeholder="Search"
           />
         </View>
@@ -76,7 +77,7 @@ class List extends React.Component {
             <Text>{`${this.getDistance(latitude, longitude, lat, lng).toFixed(2)} miles away, ${'$'.repeat(price)}`}</Text>
             {/* <Text>{"reserve"}</Text> */}
             <Image
-              style={{ height: 100, width: 100, tintColor: colors.q }}
+              style={{ height: 70, width: 70, tintColor: colors.q }}
               source={table[ranking]}
             />
           </View>
