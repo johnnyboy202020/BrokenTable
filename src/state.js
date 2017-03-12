@@ -3,6 +3,8 @@ const SET_STATE = 'SET_STATE';
 
 const defaultState = {
   restaurants: [],
+  crimes: [],
+  crime_restaurants: [],
   userLocation: null,
   selectedRestaurant: null
 };

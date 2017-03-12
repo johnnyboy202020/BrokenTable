@@ -26,7 +26,7 @@ import { colors } from 'src/helper';
 
 class List extends React.Component {
   render() {
-    let { restaurants } = this.props.state
+    let { crime_restaurants } = this.props.state
     return (
       <View style={{ flex: 1, backgroundColor: colors.t }}>
         <View style={{ height: 15, backgroundColor: colors.r }} />
@@ -41,7 +41,7 @@ class List extends React.Component {
           onScroll={Keyboard.dismiss}
           scrollEventThrottle={500}
           style={{ flex: 1 }}
-          dataSource={ds.cloneWithRows(restaurants)}
+          dataSource={ds.cloneWithRows(crime_restaurants)}
           renderRow={this.renderRow}
           renderSeparator={this.renderSeparator}
           enableEmptySections={true}
