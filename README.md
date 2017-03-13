@@ -27,7 +27,7 @@ We built our own custom api for crimes and restaurants. The endpoints are hosted
 
 **[Serverless.yml](https://github.com/MiLeung/BrokenTable/blob/master/api/my-service/serverless.yml)**
 
-#### list of restaurants
+### list of restaurants
 GET - https://sjdlzi8nw0.execute-api.us-east-1.amazonaws.com/dev/restaurants
 
 ### list of crimes
